@@ -7,7 +7,8 @@ __author__ = 'RivaSecurity'
 
 
 class Project(object):
-    def __init__(self, author, client, contact, testers, reference, startDate, endDate, description, scope, target, reviewers, _id=None):
+    def __init__(self, projectName, author, client, contact, testers, reference, startDate, endDate, description, scope, target, reviewers, _id=None):
+        self.projectName = projectName
         self.author = author
         self.client = client
         self.contact = contact
@@ -67,6 +68,7 @@ class Project(object):
     def json(self):
         return{
            "_id": self._id,
+           "projectaName": self.projectName,
            "client": self.client,
            "contact": self.contact,
             "testers": self.testers,
