@@ -33,7 +33,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Vulnerability</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Report</h6>
             </div>
             <div class="card-body">
                 <!-- Small items -->
@@ -42,15 +42,72 @@
                     <div class="col-xl-7 col-md-6 mb-2">
                       <div class="card">
                         <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">Summary</h6>
+                          <h6 class="m-0 font-weight-bold text-primary">Vulnerabilities</h6>
                         </div>
-                        <ul class="list-group">
-                      <li class="list-group-item"><span class="m-0 font-weight text-primary" style="padding-right: 20px">Name</span>XSS</li>
-                        <li class="list-group-item"><span class="m-0 font-weight text-primary" style="padding-right: 20px">Severity</span>High</li>
-                        <li class="list-group-item"><span class="m-0 font-weight text-primary" style="padding-right: 20px">Status</span>Open</li>
-                            <li class="list-group-item"><span class="m-0 font-weight text-primary" style="padding-right: 20px">Exploitability</span>Open</li>
-                        <li class="list-group-item"><span class="m-0 font-weight text-primary" style="padding-right: 20px">OWASP Top 10 Mapping</span>Injection</li>
-                    </ul>
+                        <div class="table-responsive">
+                        <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Vulnerabilities</th>
+                              <th>Severity</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>XSS</td>
+                              <td>High</td>
+                              <td>Open</td>
+                            </tr>
+                            <tr>
+                              <td>SQL Injection</td>
+                              <td>High</td>
+                              <td>Open</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-primary">Severity of Vulnerabilities</h6>
+                        </div>
+                        <div class="table-responsive">
+                        <table class="table table-bordered" id="VulnerabilitiesBySeverity" width="100%" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Severity</th>
+                              <th>Number of Vulnerabilities</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="color:purple">Critical</td>
+                              <td style="color:purple">1</td>
+                            </tr>
+                            <tr>
+                              <td style="color:red">High</td>
+                              <td style="color:red">2</td>
+                            </tr>
+                            <tr>
+                              <td style="color:orange">Medium</td>
+                              <td style="color:orange">3</td>
+                            </tr>
+                            <tr>
+                              <td style="color:blue">Low</td>
+                              <td style="color:blue">2</td>
+                            </tr>
+                             <tr>
+                              <td style="color:green">Info</td>
+                              <td style="color:green">1</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       </div>
                     </div>
                 </div>
@@ -58,7 +115,7 @@
                     <div class="col-xl-7 col-md-6 mb-2">
                       <div class="card ">
                         <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">Risk/Impact</h6>
+                          <h6 class="m-0 font-weight-bold text-primary">Scope</h6>
                         </div>
                         <div class="card-body">
                           The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
@@ -70,7 +127,7 @@
                     <div class="col-xl-7 col-md-6 mb-2">
                       <div class="card">
                         <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">Description</h6>
+                          <h6 class="m-0 font-weight-bold text-primary">Target</h6>
                         </div>
                         <div class="card-body">
                           The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
@@ -78,54 +135,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-7 col-md-6 mb-2">
-                      <div class="card ">
-                        <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">POC</h6>
-                        </div>
-                        <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-xl-7 col-md-6 mb-2">
-                      <div class="card ">
-                        <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">Remidiation</h6>
-                        </div>
-                        <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-7 col-md-6 mb-2">
-                      <div class="card ">
-                        <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
-                        </div>
-                        <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-xl-7 col-md-6 mb-2">
-                      <div class="card ">
-                        <div class="card-header">
-                          <h6 class="m-0 font-weight-bold text-primary">References</h6>
-                        </div>
-                        <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
-                        </div>
-                      </div>
-                    </div>
-                </div>
+
             </div>
           </div>
 

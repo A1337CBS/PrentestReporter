@@ -8,3 +8,4 @@ options = {
     'margin-left': '0in',
 }
 pdfkit.from_file('report.html', 'report.pdf', options=options)
+pdfkit.from_file('reportSummary.html', 'reportSummary.pdf', options=options)
