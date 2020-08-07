@@ -1,0 +1,114 @@
+{% extends "home.html" %}
+{% block content %}
+
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+ <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Project</h6>
+            </div>
+
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-lg-3"></div>
+            <!-- Border Left Utilities -->
+            <div class="col-lg-6">
+            <form>
+              <br>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-projectName">Project Name</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-client">Client</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-Scope">Scope</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="4"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-Description">Description</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7"></textarea>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Vulnerability</th>
+                      <th>Severity</th>
+                    </tr>
+                  </thead>
+                    <tr>
+                      <td>XSS</td>
+                      <td>High</td>
+                      <td align="right" style="max-width: 55px;">
+                        <a href="vulnerability.html" title="Edit" class="btn btn-info btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-eye"></i>
+                          </span>
+                        </a>
+                        <a href="vulnerability.html" title="Edit" class="btn btn-secondary btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                          </span>
+                        </a>
+                        <a href="#" title="Delete" class="btn btn-danger btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-eraser"></i>
+                          </span>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <a href="vulnerability.html" class="btn btn-secondary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Add Vulnerability</span>
+                  </a>
+              <br>
+              <br>
+              <button class="btn btn-primary" type="submit">Save</button>
+              <button type="button" class="btn btn-secondary">Reset</button>
+              <br>
+              <br>
+              <a href="#" class="btn btn-info btn-block"><i class="fab fa-fw"></i> Generate PDF Report</a>
+              <a href="#" class="btn btn-info btn-block"><i class="fab fa-fw"></i> Generate CSV Report</a>
+              <br>
+            </form>
+            </div>
+            <div class="col-lg-3"></div>
+          </div>
+
+
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+</body>
+{% endblock %}
