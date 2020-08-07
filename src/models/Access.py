@@ -1,9 +1,3 @@
-
-
-#user id
-#project id
-#previlige (read only, write)
-
 import uuid
 from src.common.Database import Database
 #from src.models.Project import Project
