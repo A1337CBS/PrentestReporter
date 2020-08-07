@@ -11,27 +11,3 @@ db.projects.insert({
   reviewers: ["manager1","client1", "developer1"]
 })
 
-{
-        "_id" : ObjectId("5f2a91fa3d7aa3ce71aa0b4e"),
-        "client" : "ClientName",
-        "contact" : 11100011,
-        "testers" : [
-                "tester1",
-                "tester2"
-        ],
-        "reference" : "xx123",
-        "startDate" : "01-01-2020",
-        "endDate" : "02-01-2020",
-        "description" : "first project for testing",
-        "scope" : [
-                "www.example1.com",
-                "www.example2.com",
-                "127.0.0.1"
-        ],
-        "target" : "Client Website",
-        "reviewers" : [
-                "manager1",
-                "client1",
-                "developer1"
-        ]
-}

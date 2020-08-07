@@ -3,6 +3,7 @@ from src.common.Database import Database
 
 Database.initialize()
 project = Project(
+        author = "tester1",
         client = "ClientName2",
         contact = 11100011,
         testers = [
@@ -29,19 +30,19 @@ project = Project(
 
 #Add
 #Database.insert(collection="projects",data=project.json())
-#Project.addProject(project)
+Project.addProject(project)
 
 #find
 projects = Project.getProjects()
 
 projects_list = []
 for project in projects:
-    print(project["client"])
+    print(project["id"])
     projects_list.append(project)
 
 print("number of projects is :", len(projects_list))
 #Delete
-Database.delete_many(collection="projects",query={"client": "ClientName"})
+#Database.delete_many(collection="projects",query={"client": "ClientName"})
 #Project.deleteProject(id="a94d6db398774c3b81b317ded2e6bfa2")
 
 #update

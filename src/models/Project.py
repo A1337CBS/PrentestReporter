@@ -21,24 +21,23 @@ class Project(object):
         self.reviewers = reviewers
         self._id = uuid.uuid4().hex if _id is None else _id
 
-    @classmethod
-    def editProject(cls, id, newObj):
-        project = Database.find_one(collection='projects',
-                                    query={'id': id})
-        project = Database.update_one(collection='projects', obj=project, newObj={"$set":newObj})
-        return project
-        #modify in db
 
     @classmethod
     def getProjects(cls):
         projects = Database.find(collection='projects', query={})
-        return projects
+        if projects != None:
+            return projects
+        else:
+            return False
 
     @classmethod
     def getProject(cls, id):
-        project = Database.find_one(collection='projects',
-                                      query={'id': id})
-        return project
+        project = Database.find_one(collection='projects', query={'_id': id})
+        if project != None:
+            return project
+        else:
+            return False
+
 
     #gets the data from json function and puts it in db
     def addProject(self):
@@ -46,13 +45,28 @@ class Project(object):
                         data=self.json())
 
     @classmethod
+    def editProject(cls, id, newObj):
+        project = Database.find_one(collection='projects', query={'_id': id})
+        print(project)
+        if project != None:  # edit if element exists
+            project = Database.update_one(collection='projects', obj=project, newObj={"$set": newObj})
+            return True
+        else:
+            return False
+
+    @classmethod
     def deleteProject(cls, id):
-        Database.delete_one(collection='projects',
-                        query={"id":id})
+        project = Database.find_one(collection='projects', query={'_id': id})
+        if project != None:  # edit if element exists
+            print(Database.delete_one(collection='projects', query={"_id": id}))
+            return True
+        else:
+            return False
+
 
     def json(self):
         return{
-           "id": self._id,
+           "_id": self._id,
            "client": self.client,
            "contact": self.contact,
             "testers": self.testers,
