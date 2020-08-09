@@ -39,6 +39,17 @@ def projects_template():
 def project_template():
     return render_template('project.html')
 
+@app.route('/deleteProject', methods=['POST'])
+def delete_project():
+    _id = request.form["project_id"]
+    print(_id)
+    Project.deleteProject(id=_id)
+    return render_template('projects.html')
+
+@app.route('/viewProject')
+def view_project():
+    return render_template('project.html')
+
 @app.route('/vulnerability')
 def vulnerability_template():
     return render_template('vulnerability.html')

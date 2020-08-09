@@ -1,12 +1,13 @@
 import uuid
 import datetime
 from src.common.Database import Database
-#from src.models.Project import Project
+from src.models.Vulnerability import Vulnerability
 
 __author__ = 'RivaSecurity'
 
 #add version
 #add Ladt Modified Date
+#add status
 
 class Project(object):
     def __init__(self, projectName, author, client, contact, testers, startDate, endDate,
@@ -77,7 +78,10 @@ class Project(object):
     def deleteProject(cls, id):
         project = Database.find_one(collection='projects', query={'_id': id})
         if project != None:  # edit if element exists
-            print(Database.delete_one(collection='projects', query={"_id": id}))
+            print(id)
+            Vulnerability.deleteVulnerabilitiesOfProject(report_id=id)
+            print(Project.getProject(id))
+            Database.delete_one(collection='projects', query={"_id": id})
             return True
         else:
             return False
