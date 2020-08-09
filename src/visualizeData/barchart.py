@@ -1,18 +1,21 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from src.models.Vulnerability import Vulnerability
+from src.models.Project import Project
+from src.common.Database import Database
+Database.initialize()
 
 label = ['Critical', 'High', 'Medium', 'Low', 'Info']
+report_id = "baf03af5f64e438a9bad9b161863782b"
 
-no_vulns = [
-    1, 2, 5, 6, 3
-]
+no_vulns = Vulnerability.getVulnerabilitiesSeverities(report_id=report_id)
+print(no_vulns)
 
 def plot_bar_x():
     # this is for plotting purpose
     index = np.arange(len(label))
     yindex = range(0,max(no_vulns)+1)
-    print(yindex)
     plt.bar(index, no_vulns, color=['purple','red','orange','blue','green'])
     plt.xlabel('Severity', fontsize=10)
     plt.ylabel('No. of Vulnerabilities', fontsize=10)
@@ -20,6 +23,7 @@ def plot_bar_x():
     yint = [0,1,2,3,4,5]
     plt.yticks(yindex, yindex, fontsize=10, rotation=0)
     plt.title('Vulnerabilities by severity')
-    plt.show()
+    #plt.show()
+    plt.savefig('bargraph.png')
 
 plot_bar_x()

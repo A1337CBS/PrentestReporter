@@ -4,14 +4,17 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
+var ydata = [1, 2, 4, 3, 2];
+var severityColors=["purple","red","orange","blue","green"];
+var severities=["Critical","High","Medium","Low","Informative"];
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: severities,
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: ydata,
+      backgroundColor: severityColors,
+      hoverBackgroundColor: severityColors,
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

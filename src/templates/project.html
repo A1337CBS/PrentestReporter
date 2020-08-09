@@ -22,23 +22,23 @@
             <div class="col-lg-3"></div>
             <!-- Border Left Utilities -->
             <div class="col-lg-6">
-            <form>
+            <form id="project-form" action="/addProject" method="post">
               <br>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-projectName">Project Name</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="projectName">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-client">Client</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="client">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-client-contact">Client Contact</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="contact">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -54,45 +54,57 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-author">Author</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="author">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-testers">Testers</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="testers"></textarea>
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-reviewers">Reviewers</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="reviewers"></textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-startDate">Start Date</span>
                 </div>
-                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="startDate">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-endDate">End Date</span>
                 </div>
-                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="endDate">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Target">Target</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="target"></textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Scope">Scope</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="4"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="4" name="scope"></textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Description">Description</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="description"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-Summary">Executive Summary</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="executiveSummary"></textarea>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="input-Comments">Conclusion</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="conclusion"></textarea>
               </div>
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

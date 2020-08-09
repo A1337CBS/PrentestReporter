@@ -5,9 +5,12 @@ from src.common.Database import Database
 
 __author__ = 'RivaSecurity'
 
+#add version
+#add Ladt Modified Date
 
 class Project(object):
-    def __init__(self, projectName, author, client, contact, testers, reference, startDate, endDate, description, scope, target, reviewers, _id=None):
+    def __init__(self, projectName, author, client, contact, testers, startDate, endDate,
+                 description, scope, target, executiveSummary, reviewers, conclusion, _id=None, reference=None):
         self.projectName = projectName
         self.author = author
         self.client = client
@@ -19,7 +22,9 @@ class Project(object):
         self.description = description
         self.scope = scope
         self.target = target
+        self.executiveSummary = executiveSummary
         self.reviewers = reviewers
+        self.conclusion = conclusion
         self._id = uuid.uuid4().hex if _id is None else _id
 
 
@@ -30,6 +35,19 @@ class Project(object):
             return projects
         else:
             return False
+
+    @classmethod
+    def getProjectNumbersOfVulnerabilities(cls):
+        nos_vulns = []
+        projects = Database.find(collection='projects', query={})
+        for project in projects:
+            no_vulns = Database.find(collection='vulnerabilities', query={'report_id': project["_id"]})
+            if no_vulns != None:
+                nos_vulns.append(no_vulns.count())
+
+        return nos_vulns
+
+
 
     @classmethod
     def getProject(cls, id):
@@ -68,7 +86,7 @@ class Project(object):
     def json(self):
         return{
            "_id": self._id,
-           "projectaName": self.projectName,
+           "projectName": self.projectName,
            "client": self.client,
            "contact": self.contact,
             "testers": self.testers,
@@ -79,4 +97,6 @@ class Project(object):
             "scope": self.scope,
             "target": self.target,
             "reviewers": self.reviewers,
+            "executiveSummary": self.executiveSummary,
+            "conclusion": self.conclusion
         }

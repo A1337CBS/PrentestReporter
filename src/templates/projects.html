@@ -38,98 +38,32 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                  {% for project, nos_vulns in projects %}
                     <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
+                        <td>{{project.projectName}}</td>
+                        <td>{{project.target}}</td>
+                        <td>{{project.client}}</td>
+                        <td>{{nos_vulns}}</td>
+                        <td>{{project.endDate}}</td>
+                        <td align="center" style="max-width: 100px;">
+                        <a title="Edit" class="btn btn-info btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-eye"></i>
+                          </span>
+                        </a>
+                        <a title="Edit" class="btn btn-secondary btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-edit"></i>
+                          </span>
+                        </a>
+                        <a title="Delete" class="btn btn-danger btn-icon-split">
+                          <span class="icon text-white-50">
+                            <i class="fas fa-eraser"></i>
+                          </span>
+                        </a>
+                      </td>
                     </tr>
-                    <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                    <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                    <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                    <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                    <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
-                  <tr>
-                      <td>Q Company Penetration Test</td>
-                      <td>Main Website</td>
-                      <td>IT Manager - Q Corprate</td>
-                      <td>6</td>
-                      <td>2011/04/25</td>
-                    </tr>
+                  {% endfor %}
 
                   </tbody>
                 </table>

@@ -1,6 +1,7 @@
 import pdfkit
 #pdfkit.from_url('http://www.google.com', 'micro.pdf')
 options = {
+    'javascript-delay': 1000,
     'page-size': 'A4',
     'margin-top': '0in',
     'margin-right': '0in',
