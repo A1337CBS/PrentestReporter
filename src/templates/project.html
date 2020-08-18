@@ -19,26 +19,27 @@
           <!-- Content Row -->
           <div class="row">
 
-            <div class="col-lg-3"></div>
+            <div class="col-lg-1"></div>
             <!-- Border Left Utilities -->
-            <div class="col-lg-6">
-            <form id="project-form" action="/addProject" method="post">
+            <div class="col-lg-10">
+            <form id="project-form" action="/project" method="post" enctype="multipart/form-data">
               <br>
+              <input type="text" hidden="hidden" name="projectID" value="{{project._id}}">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-projectName">Project Name</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="projectName">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="projectName" value="{{project.projectName}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-client">Client</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="client">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="client" value="{{project.client}}">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-client-contact">Client Contact</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="contact">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="contact" value="{{project.contact}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -46,66 +47,70 @@
                 </div>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="inputGroupFile01"
-                    aria-describedby="inputGroupFileAddon01">
+                    aria-describedby="inputGroupFileAddon01" name="clientLogoID" value="{{project.clientLogoID[0]}}">
                   <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
+              </div>
+              <div class="input-group mb-3">
+                <div class="text-center my-auto"> <img width="200px" id="clientLogo" alt=" " src="/files/{{project.clientLogoID[0]}}"></div>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-author">Author</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="author">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="author" value="{{project.author}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-testers">Testers</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="testers"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="testers" >{{project.testers}}</textarea>
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-reviewers">Reviewers</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="reviewers"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="reviewers">{{project.reviewers}}</textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-startDate">Start Date</span>
                 </div>
-                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="startDate">
+                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="startDate" value="{{project.startDate}}">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-endDate">End Date</span>
                 </div>
-                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="endDate">
+                <input type="date" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="endDate" value="{{project.endDate}}">
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Target">Target</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="target"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="2" name="target">{{project.target}}</textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Scope">Scope</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="4" name="scope"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="4" name="scope">{{project.scope}}</textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Description">Description</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="description"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="description">{{project.description}}</textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Summary">Executive Summary</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="executiveSummary"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="executiveSummary">{{project.executiveSummary}}</textarea>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="input-Comments">Conclusion</span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="conclusion"></textarea>
+                <textarea class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" rows="7" name="conclusion">{{project.conclusion}}</textarea>
               </div>
+              <input hidden="true" name = "project_id" value={{project._id}}>
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -114,49 +119,48 @@
                       <th>Severity</th>
                     </tr>
                   </thead>
+                  {% if vulnerabilities != None %}
+                  {% for vulnerability in vulnerabilities %}
                     <tr>
-                      <td>XSS</td>
-                      <td>High</td>
+                      <td>{{vulnerability.name}}</td>
+                      <td>{{vulnerability.severity}}</td>
                       <td align="center" style="max-width: 80px;">
-                        <a href="/vulnerability" title="Edit" class="btn btn-info btn-icon-split">
+                        <a href="/vulnerability?vuln={{vulnerability._id}}&proj={{vulnerability.report_id}}" title="Edit" class="btn btn-info btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-eye"></i>
                           </span>
                         </a>
-                        <a href="/vulnerability" title="Edit" class="btn btn-secondary btn-icon-split">
+                        <a href="/vulnerability?vuln={{vulnerability._id}}&proj={{vulnerability.report_id}}" title="Edit" class="btn btn-secondary btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-edit"></i>
                           </span>
                         </a>
-                        <a href="#" title="Delete" class="btn btn-danger btn-icon-split">
+                        <a href="/deleteVulnerability?vuln={{vulnerability._id}}&proj={{vulnerability.report_id}}" title="Delete" class="btn btn-danger btn-icon-split">
                           <span class="icon text-white-50">
                             <i class="fas fa-eraser"></i>
                           </span>
                         </a>
                       </td>
                     </tr>
+                  {% endfor %}
+                  {% endif %}
 
                   </tbody>
                 </table>
               </div>
-              <a href="/vulnerability" class="btn btn-secondary btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Add Vulnerability</span>
-                  </a>
+              <a href="/vulnerability?proj={{project._id}}" class="btn btn-info btn-secondary"><i class="fab fa-fw"></i>Add Vulnerability</a>
               <br>
               <br>
               <button class="btn btn-primary" type="submit">Save</button>
               <button type="button" class="btn btn-secondary">Reset</button>
               <br>
               <br>
-              <a href="#" class="btn btn-info btn-block"><i class="fab fa-fw"></i> Generate PDF Report</a>
+              <a href="/DownloadPDF?proj={{project._id}}" class="btn btn-info btn-block"><i class="fab fa-fw"></i> Generate PDF Report</a>
               <a href="#" class="btn btn-info btn-block"><i class="fab fa-fw"></i> Generate CSV Report</a>
               <br>
             </form>
             </div>
-            <div class="col-lg-3"></div>
+            <div class="col-lg-1"></div>
           </div>
 
 
@@ -172,3 +176,4 @@
 </body>
 
 {% endblock %}
+

@@ -4,7 +4,16 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
-var ydata = [1, 2, 4, 3, 2];
+var ydata = [0,0,0,0,0];
+var ydata1 = []
+ydata1.push(parseInt(document.getElementById("severitiesArray0").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray1").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray2").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray3").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray4").value))
+
+ydata = ydata1
+
 var severityColors=["purple","red","orange","blue","green"];
 var severities=["Critical","High","Medium","Low","Informative"];
 var myPieChart = new Chart(ctx, {

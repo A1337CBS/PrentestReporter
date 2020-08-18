@@ -29,8 +29,16 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var ydata = [1, 2, 4, 3, 2];
+var ydata1 = []
+ydata1.push(parseInt(document.getElementById("severitiesArray0").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray1").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray2").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray3").value))
+ydata1.push(parseInt(document.getElementById("severitiesArray4").value))
+
 var severityColors=["purple","red","orange","blue","green"];
+var ydata = ydata1
+var maxi = Math.max.apply(Math, ydata);
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
@@ -70,7 +78,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: Math.max(...ydata),
+          max: maxi,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

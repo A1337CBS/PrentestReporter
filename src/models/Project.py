@@ -10,11 +10,12 @@ __author__ = 'RivaSecurity'
 #add status
 
 class Project(object):
-    def __init__(self, projectName, author, client, contact, testers, startDate, endDate,
+    def __init__(self, projectName, author, client, clientLogoID, contact, testers, startDate, endDate,
                  description, scope, target, executiveSummary, reviewers, conclusion, _id=None, reference=None):
         self.projectName = projectName
         self.author = author
         self.client = client
+        self.clientLogoID = clientLogoID,
         self.contact = contact
         self.testers = testers
         self.reference = reference
@@ -69,7 +70,7 @@ class Project(object):
         project = Database.find_one(collection='projects', query={'_id': id})
         print(project)
         if project != None:  # edit if element exists
-            project = Database.update_one(collection='projects', obj=project, newObj={"$set": newObj})
+            project = Database.update_one(collection='projects', obj=project, newObj={"$set": newObj.json()})
             return True
         else:
             return False
@@ -78,20 +79,29 @@ class Project(object):
     def deleteProject(cls, id):
         project = Database.find_one(collection='projects', query={'_id': id})
         if project != None:  # edit if element exists
-            print(id)
             Vulnerability.deleteVulnerabilitiesOfProject(report_id=id)
-            print(Project.getProject(id))
             Database.delete_one(collection='projects', query={"_id": id})
             return True
         else:
             return False
 
+    def addImage(image, filename):
+        return Database.saveFile(collection='imagesTable', image=image, filename=filename)
+
+    def getImage(filename):
+        return Database.getFileByName(filename=filename)
+
+    def addObject(self):
+            return Database.insert(collection='images',
+                            data=self.json())
 
     def json(self):
         return{
            "_id": self._id,
            "projectName": self.projectName,
            "client": self.client,
+            "clientLogoID": self.clientLogoID,
+            "author": self.author,
            "contact": self.contact,
             "testers": self.testers,
             "reference": self.reference,

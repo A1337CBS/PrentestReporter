@@ -24,7 +24,7 @@
                       <th>Project Name</th>
                       <th>Target</th>
                       <th>Client</th>
-                      <th>Number of vulnerabilities</th>
+                      <th>Vulnerabilities #</th>
                       <th>End Date</th>
                     </tr>
                   </thead>
@@ -33,7 +33,7 @@
                       <th>Project Name</th>
                       <th>Target</th>
                       <th>Client</th>
-                      <th>Number of vulnerabilities</th>
+                      <th>Vulnerabilities #</th>
                       <th>End Date</th>
                     </tr>
                   </tfoot>
@@ -45,28 +45,22 @@
                         <td>{{project.client}}</td>
                         <td>{{nos_vulns}}</td>
                         <td>{{project.endDate}}</td>
-                        <td align="center" style="max-width: 75px;">
-                        <form id="view-project-form" action="/deleteProject" method="post" style="float: left;">
+                        <td align="center" style="max-width: 160px;">
+                        <form id="view-project-form" action="/report" method="GET" style="float: left; padding-right:3px"  title="View">
                             <input name="project_id" hidden="true" value={{project._id}} >
-
-                                <button class="btn btn-info" type="submit"><i class="fas fa-eye"></i></button>
-
+                                <button class="btn btn-info" type="submit"><i class="fas fa-eye" title="View"></i></button>
+                        </form>
+                        <div style="float: left; padding-right:3px"  title="Edit">
+                            <a href="/project?proj={{project._id}}" class="btn btn-secondary" type="submit"><i class="fas fa-edit"></i></a>
+                        </div>
+                        <form id="delete-project-form" action="/deleteProject" method="post" style="float: left; padding-right:3px" title="Delete">
+                            <input name="project_id" hidden="true" value={{project._id}} >
+                                <button class="btn btn-danger" type="submit"><i class="fas fa-eraser" ></i></button>
 
                         </form>
-                        <form id="edit-project-form" action="/deleteProject" method="post" style="float: left;">
-                            <input name="project_id" hidden="true" value={{project._id}} >
-
-                                <button class="btn btn-secondary" type="submit"><i class="fas fa-edit"></i></button>
-
-
-                        </form>
-                        <form id="delete-project-form" action="/deleteProject" method="post" style="float: left;">
-                            <input name="project_id" hidden="true" value={{project._id}} >
-
-                                <button class="btn btn-danger" type="submit"><i class="fas fa-eraser"></i></button>
-
-
-                        </form>
+                        <div style="float: left; padding-right:3px"  title="Download Report">
+                            <a href="/DownloadPDF?proj={{project._id}}" class="btn btn-success" type="submit"><i class="fas fa-file-pdf"></i></a>
+                        </div>
                       </td>
                     </tr>
                   {% endfor %}
