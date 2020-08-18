@@ -86,14 +86,11 @@ class Project(object):
             return False
 
     def addImage(image, filename):
-        return Database.saveFile(collection='imagesTable', image=image, filename=filename)
+        return Database.saveFile(image=image, filename=filename)
 
     def getImage(filename):
         return Database.getFileByName(filename=filename)
 
-    def addObject(self):
-            return Database.insert(collection='images',
-                            data=self.json())
 
     def json(self):
         return{

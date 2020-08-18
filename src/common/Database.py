@@ -46,7 +46,7 @@ class Database(object):
         return Database.DATABASE[collection].delete_many(query)
 
     @staticmethod
-    def saveFile(collection, image, filename):
+    def saveFile(image, filename):
         image_id = Database.fs.put(image, filename=filename)
         return image_id
 
@@ -57,7 +57,6 @@ class Database(object):
 
     @staticmethod
     def getFileByName(filename):
-        print(filename)
         file = Database.fs.find_one({"filename": filename})
         if file != None:
             imagedata = Database.fs.get(file._id).read()

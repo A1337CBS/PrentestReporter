@@ -193,11 +193,21 @@ def add_vulnerability():
     owaspTop10 = request.form['owaspTop10']
     risk = request.form['risk']
     remediation = request.form['remediation']
+    if request.files['pocImage'] != None:
+        image = request.files['pocImage']
+        print(image.filename)
+        # add picture to DB and get ID
+        image_id = Vulnerability.addImage(image, image.filename)
+        print(image_id)
+        pocImage = image.filename
+
+    else:
+        pocImage = None
 
     vulnerability = Vulnerability(report_id=report_id, name=name, status=status, severity=severity,
                                   exploitability=exploitability, poc=poc, description=description, comments=comments,
                                   references=references, owaspTop10=owaspTop10,
-                                  risk=risk, remediation=remediation)
+                                  risk=risk, remediation=remediation, pocImage=pocImage)
     print(vulnerability)
 
     Vulnerability.addVulnerability(vulnerability)
