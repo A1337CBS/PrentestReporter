@@ -262,6 +262,11 @@ def download_report():
 def getImage(filename):
     return Project.getImage(filename=filename)
 
+#get IMage data
+@app.route('/files/')
+def getNone():
+    return "#"
+
 
 if __name__ == '__main__':
     app.run(port=4996, debug=True)
