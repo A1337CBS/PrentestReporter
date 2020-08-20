@@ -146,23 +146,20 @@ def add_project():
         reviewers = request.form['reviewers']
         executiveSummary = request.form['executiveSummary']
         conclusion = request.form['conclusion']
-        if request.files['clientLogoID'] != None:
+        clientLogoID = request.form['clientLogoIDtext']
+        if 'clientLogoID' in request.files:
             image = request.files['clientLogoID']
-            print(image.filename)
-            #add picture to DB and get ID
-            image_id = Project.addImage(image, image.filename)
-            print(image_id)
-            clientLogoID = image.filename
-
-        else:
-            clientLogoID = None
+            if image.filename!='':
+                #add picture to DB and get ID
+                image_id = Project.addImage(image, image.filename)
+                clientLogoID = image.filename
 
         if request.form['projectID'] !=None:
             projectID = request.form['projectID']
             if Project.getProject(projectID) != False:
                 project = Project(_id=projectID,projectName=projectName, client=client, contact=contact, author=author, description=description, target=target,
-                                  scope=scope, startDate=startDate, endDate=endDate, testers=testers, reviewers=reviewers,
-                                  executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
+                                      scope=scope, startDate=startDate, endDate=endDate, testers=testers, reviewers=reviewers,
+                                      executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
                 Project.editProject(projectID, project)
             else:
                 project = Project(projectName=projectName, client=client, contact=contact, description=description,
@@ -189,6 +186,7 @@ def add_vulnerability():
     references = request.form['references']
     owaspTop10 = request.form['owaspTop10']
     risk = request.form['risk']
+    date = request.form['date']
     remediation = request.form['remediation']
     if request.files['pocImage'] != None:
         image = request.files['pocImage']
@@ -204,7 +202,7 @@ def add_vulnerability():
     vulnerability = Vulnerability(report_id=report_id, name=name, status=status, severity=severity,
                                   exploitability=exploitability, poc=poc, description=description, comments=comments,
                                   references=references, owaspTop10=owaspTop10,
-                                  risk=risk, remediation=remediation, pocImage=pocImage)
+                                  risk=risk, remediation=remediation, pocImage=pocImage, date=date)
     print(vulnerability)
 
     Vulnerability.addVulnerability(vulnerability)
