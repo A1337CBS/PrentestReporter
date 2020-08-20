@@ -165,15 +165,12 @@ def add_project():
                                   executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
                 Project.editProject(projectID, project)
             else:
-                print("project ID is wrong")
-            return project_template(projectID=projectID)
-        else:
-            project = Project(projectName=projectName, client=client, contact=contact, description=description,
-                              target=target,
-                              scope=scope, startDate=startDate, endDate=endDate, author=author, testers=testers,
-                              reviewers=reviewers,
-                              executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
-            Project.addProject(project)
+                project = Project(projectName=projectName, client=client, contact=contact, description=description,
+                                  target=target,
+                                  scope=scope, startDate=startDate, endDate=endDate, author=author, testers=testers,
+                                  reviewers=reviewers,
+                                  executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
+                Project.addProject(project)
 
             return projects_template()
 
@@ -244,7 +241,7 @@ def download_report():
                 'footer-center': '[page] of [topage]'
 
             }
-            url = str(request.url_root)+"/report?project_id=3e44a57fb1d5497c94da7e2533663594"
+            url = str(request.url_root)+"/report?project_id="+str(project_id)
             pdf = pdfkit.from_url(url, False, options=options)
             response = make_response(pdf)
             response.headers["Content-Type"] = "application/pdf"
