@@ -154,14 +154,14 @@ def add_project():
                 image_id = Project.addImage(image, image.filename)
                 clientLogoID = image.filename
 
-        if request.form['projectID'] !=None:
+        if request.form['projectID'] !=None: #if project  already exist, dont add it, just edit it
             projectID = request.form['projectID']
             if Project.getProject(projectID) != False:
                 project = Project(_id=projectID,projectName=projectName, client=client, contact=contact, author=author, description=description, target=target,
                                       scope=scope, startDate=startDate, endDate=endDate, testers=testers, reviewers=reviewers,
                                       executiveSummary=executiveSummary, conclusion=conclusion, clientLogoID=clientLogoID)
                 Project.editProject(projectID, project)
-            else:
+            else: #if project does not exist, add it
                 project = Project(projectName=projectName, client=client, contact=contact, description=description,
                                   target=target,
                                   scope=scope, startDate=startDate, endDate=endDate, author=author, testers=testers,
@@ -198,14 +198,26 @@ def add_vulnerability():
 
     else:
         pocImage = None
+    vuln_id = request.args.get('vuln')
+    print(vuln_id)
+    if vuln_id !=None: #if vuln  already exist, dont add it, just edit it
+            if Vulnerability.getVulnerability(vuln_id) != False:
+                print("edit")
+                vulnerability = Vulnerability(_id=vuln_id, report_id=report_id, name=name, status=status, severity=severity,
+                                              exploitability=exploitability, poc=poc, description=description,
+                                              comments=comments,
+                                              references=references, owaspTop10=owaspTop10,
+                                              risk=risk, remediation=remediation, pocImage=pocImage, date=date)
+                Vulnerability.editVulnerability(vuln_id, vulnerability)
+            else: #if vuln does not exist, add it
+                print("add")
+                vulnerability = Vulnerability(report_id=report_id, name=name, status=status, severity=severity,
+                                              exploitability=exploitability, poc=poc, description=description,
+                                              comments=comments,
+                                              references=references, owaspTop10=owaspTop10,
+                                              risk=risk, remediation=remediation, pocImage=pocImage, date=date)
 
-    vulnerability = Vulnerability(report_id=report_id, name=name, status=status, severity=severity,
-                                  exploitability=exploitability, poc=poc, description=description, comments=comments,
-                                  references=references, owaspTop10=owaspTop10,
-                                  risk=risk, remediation=remediation, pocImage=pocImage, date=date)
-    print(vulnerability)
-
-    Vulnerability.addVulnerability(vulnerability)
+                Vulnerability.addVulnerability(vulnerability)
 
     return project_template(projectID=report_id)
 
