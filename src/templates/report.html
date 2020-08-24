@@ -143,7 +143,7 @@
                           <tbody>
                           {% for vulnerability in vulnerabilities %}
                             <tr>
-                                <td class="severity" >{{vulnerability.name}}</td>
+                                <td class="severity" ><a href="#{{vulnerability._id}}">{{vulnerability.name}}</a></td>
                                 <td class="severity">{{vulnerability.severity}}</td>
                                 <td>{{vulnerability.status}}</td>
                             </tr>
@@ -167,7 +167,7 @@
                           <thead>
                             <tr>
                               <th>Severity</th>
-                              <th>Number of Vulnerabilities</th>
+                              <th>Vulnerabilities #</th>
                                 <th>Graph</th>
                             </tr>
                           </thead>
@@ -364,7 +364,7 @@
         <div class="container-fluid">
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+          <div class="card shadow mb-4" id="{{vulnerability._id}}">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-dark">Vulnerability #{{loop.index}} - {{vulnerability.name}}</h6>
             </div>
@@ -559,7 +559,7 @@
         //chart.title('Severities of Vulnerabilities');
          //chart.yScale().ticks().interval(1);
         chart.yScale().ticks().allowFractional(false);
-         chart.yScale().maximum(Math.max(...vs));
+            //chart.yScale().maximum(Math.max(...vs));
         // set container id for the chart
         chart.container('container');
         // initiate chart drawing
