@@ -168,6 +168,7 @@
                             <tr>
                               <th>Severity</th>
                               <th>Number of Vulnerabilities</th>
+                                <th>Graph</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -175,9 +176,11 @@
                               <td style="color:purple">Critical</td>
                               <td style="color:purple">{{severities[0]}}</td>
                                 <td rowspan="5" align="center">
-                                    <div class="chart-bar" style="width: 300px">
-                                    <canvas id="myPieChart"></canvas>
-                                    </div>
+                                    <div id="container" style="width: 500px; height: 400px;"></div>
+
+                                    <!--<div class="chart-bar" style="width: 300px">
+                                    &lt;!&ndash;<canvas id="myPieChart"></canvas>&ndash;&gt;
+                                    </div>-->
                                 </td>
                             </tr>
                             <tr>
@@ -283,9 +286,14 @@
 
                     </div>
                 </div>-->
-                <!--<div class="row">
+                <div class="row">
+                    <input hidden="true" id = "severitiesArray0" value={{severities[0]}}>
+                              <input hidden="true" id = "severitiesArray1" value={{severities[1]}}>
+                              <input hidden="true" id = "severitiesArray2" value={{severities[2]}}>
+                              <input hidden="true" id = "severitiesArray3" value={{severities[3]}}>
+                              <input hidden="true" id = "severitiesArray4" value={{severities[4]}}>
 
-                  <div class="col-xl-7 col-md-6 mb-2">
+                  <!--<div class="col-xl-7 col-md-6 mb-2">
                       <div class="card">
                         <div class="card-header">
                           <h6 class="m-0 font-weight-bold text-dark">Severity of Vulnerabilities</h6>
@@ -297,12 +305,12 @@
                               <input hidden="true" id = "severitiesArray2" value={{severities[2]}}>
                               <input hidden="true" id = "severitiesArray3" value={{severities[3]}}>
                               <input hidden="true" id = "severitiesArray4" value={{severities[4]}}>
-                            <canvas id="myBarChart" ></canvas>
+                            &lt;!&ndash;<canvas id="myBarChart" ></canvas>&ndash;&gt;
                           </div>
                         </div>
                       </div>
-                    </div>
-                </div>-->
+                    </div>-->
+                </div>
                  <div style = "display:block; clear:both; page-break-after:always;"></div>
                  <div class="row">
                     <div class="col-xl-7 col-md-6 mb-2">
@@ -527,6 +535,38 @@
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+ <script src="js/demo/anychart-base.min.js" type="text/javascript"></script>
+    <script>
+      anychart.onDocumentReady(function () {
+        // create pie chart with passed data
+          var ydata1 = [];
+            ydata1.push(parseInt(document.getElementById("severitiesArray0").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray1").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray2").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray3").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray4").value));
+          vs=ydata1;
+        var data = anychart.data.set([
+          ["critical", vs[0], "purple", "purple", "", {stroke: null}],
+          ["high", vs[1], "red", "red", "", {stroke: null}],
+          ["medium", vs[2], "orange", "orange", "", {stroke: null}],
+          ["low", vs[3], "blue", "blue", "", {stroke: null}],
+          ["info", vs[4], "green", "green", "", {stroke: null}],
+        ]);
+        var wealth =  data.mapAs({x: 0, value: 1, fill: 3, stroke: 0, label: 6});
+        var chart = anychart.bar(wealth);
+        // set chart title text settings
+        //chart.title('Severities of Vulnerabilities');
+         //chart.yScale().ticks().interval(1);
+        chart.yScale().ticks().allowFractional(false);
+         chart.yScale().maximum(Math.max(...vs));
+        // set container id for the chart
+        chart.container('container');
+        // initiate chart drawing
+        chart.draw();
+      });
+    </script>
+
   <script>
     function severity_color(severity) {
         var severityColors=["purple","red","orange","blue","green"];

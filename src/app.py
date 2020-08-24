@@ -43,11 +43,20 @@ def project_template(projectID=None):
     if projectID is None:
         projectID = request.args.get('proj')
     project = Project.getProject(projectID)
+
     if (projectID != None):
         vulnerabilities = Vulnerability.getVulnerabilities(projectID)
+        clientLogo = project['clientLogoID'][0]
     else:
         vulnerabilities = None
-    return render_template('project.html', project = project, vulnerabilities=vulnerabilities)
+        clientLogo = None
+
+    if (project != False):
+        clientLogo = project['clientLogoID'][0]
+    else:
+        clientLogo = None
+
+    return render_template('project.html', project = project, clientLogo=clientLogo, vulnerabilities=vulnerabilities)
 
 
 @app.route('/deleteProject', methods=['POST'])
