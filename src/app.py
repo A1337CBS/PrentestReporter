@@ -282,10 +282,8 @@ def download_report():
 @app.route('/files/<filename>')
 def getImage(filename):
     if filename == "None":
-        print("none")
         return ""
     else:
-        print("found")
         return Project.getImage(filename=filename)
 
 #get IMage data
