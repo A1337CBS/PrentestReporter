@@ -21,22 +21,20 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-
 </head>
 
 <body id="page-top">
-
- <!-- Page Wrapper -->
-  <div id="wrapper">
+ <!-- Summary-->
+  <div id="wrapper1">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-dark">Project Name - Report</h6>
+          <div class="mb-4">
+            <div class="py-3">
+              <h6 class="m-0 font-weight-bold text-dark">{{project.projectName}} - Report</h6>
             </div>
-            <div class="card-body">
+            <div class="">
                 <!-- Small items -->
                 <!-- Basic Card Example -->
                 <div class="row">
@@ -46,7 +44,7 @@
                           <h6 class="m-0 font-weight-bold text-dark">Client</h6>
                         </div>
                         <div class="table-responsive">
-                            <div class="text-center my-auto" style="padding:100px"> <img width="400px" src="img/qr.png"></div>
+                            <div class="text-center my-auto" style="padding:100px"> <img width="400px" src="/files/{{filename}}"></div>
                         <table class="table table-bordered" id="client" width="100%" cellspacing="0">
                             <thead>
                             <tr>
@@ -56,8 +54,8 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Qatar Airways</td>
-                                <td>+974-99880011</td>
+                              <td>{{project.client}}</td>
+                                <td>{{project.contact}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -82,9 +80,9 @@
                           </thead>
                           <tbody>
                             <tr>
-                                <td>Jason Juston</td><!--author-->
-                                <td>Ireck Martin</td><!--tester-->
-                                <td>Jessy White</td><!--reviewer-->
+                                <td>{{project.author}}</td><!--author-->
+                                <td>{{project.testers}}</td><!--tester-->
+                                <td>{{project.reviewers}}</td><!--reviewer-->
                             </tr>
                           </tbody>
                         </table>
@@ -94,19 +92,19 @@
                           <tbody>
                           <tr>
                               <th>Start Date</th>
-                              <td>04-11-2020</td>
+                              <td>{{project.startDate}}</td>
                             </tr>
                             <tr>
                               <th>End Date</th>
-                              <td>04-12-2020</td>
+                              <td>{{project.endDate}}</td>
                             </tr>
                             <tr>
                               <th>Last Modified</th>
-                              <td>04-12-2020</td>
+                              <td>{{project.lastModified}}</td>
                             </tr>
                             <tr>
                               <th>Version</th>
-                              <td>1.0</td>
+                              <td>{{project.version}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -121,7 +119,7 @@
                           <h6 class="m-0 font-weight-bold text-dark">Executive Summary</h6>
                         </div>
                         <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                            <pre>{{project.executiveSummary}}</pre>
                         </div>
                       </div>
                     </div>
@@ -143,16 +141,13 @@
                             </tr>
                           </thead>
                           <tbody>
+                          {% for vulnerability in vulnerabilities %}
                             <tr>
-                              <td>XSS</td>
-                              <td>High</td>
-                              <td>Open</td>
+                                <td class="severity" ><a href="#{{vulnerability._id}}">{{vulnerability.name}}</a></td>
+                                <td class="severity">{{vulnerability.severity}}</td>
+                                <td>{{vulnerability.status}}</td>
                             </tr>
-                            <tr>
-                              <td>SQL Injection</td>
-                              <td>High</td>
-                              <td>Open</td>
-                            </tr>
+                          {% endfor %}
                           </tbody>
                         </table>
                       </div>
@@ -172,34 +167,37 @@
                           <thead>
                             <tr>
                               <th>Severity</th>
-                              <th>Number of Vulnerabilities</th>
+                              <th>Vulnerabilities #</th>
+                                <th>Graph</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <td style="color:purple">Critical</td>
-                              <td style="color:purple">1</td>
+                              <td style="color:purple">{{severities[0]}}</td>
                                 <td rowspan="5" align="center">
-                                    <div class="chart-bar" style="width: 300px">
-                                    <canvas id="myPieChart"></canvas>
-                                    </div>
+                                    <div id="container" style="width: 500px; height: 400px;"></div>
+
+                                    <!--<div class="chart-bar" style="width: 300px">
+                                    &lt;!&ndash;<canvas id="myPieChart"></canvas>&ndash;&gt;
+                                    </div>-->
                                 </td>
                             </tr>
                             <tr>
                               <td style="color:red">High</td>
-                              <td style="color:red">2</td>
+                              <td style="color:red">{{severities[1]}}</td>
                             </tr>
                             <tr>
                               <td style="color:orange">Medium</td>
-                              <td style="color:orange">3</td>
+                              <td style="color:orange">{{severities[2]}}</td>
                             </tr>
                             <tr>
                               <td style="color:blue">Low</td>
-                              <td style="color:blue">2</td>
+                              <td style="color:blue">{{severities[3]}}</td>
                             </tr>
                              <tr>
                               <td style="color:green">Info</td>
-                              <td style="color:green">1</td>
+                              <td style="color:green">{{severities[4]}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -209,7 +207,7 @@
 
                     </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-xl-7 col-md-6 mb-2">
                       <div class="card">
                         <div class="card-header">
@@ -287,21 +285,31 @@
                       </div>
 
                     </div>
-                </div>
-                <div class="row"><!-- Bar Chart -->
-                  <!-- Bar Chart -->
-                  <div class="col-xl-7 col-md-6 mb-2">
+                </div>-->
+                <div class="row">
+                    <input hidden="true" id = "severitiesArray0" value={{severities[0]}}>
+                              <input hidden="true" id = "severitiesArray1" value={{severities[1]}}>
+                              <input hidden="true" id = "severitiesArray2" value={{severities[2]}}>
+                              <input hidden="true" id = "severitiesArray3" value={{severities[3]}}>
+                              <input hidden="true" id = "severitiesArray4" value={{severities[4]}}>
+
+                  <!--<div class="col-xl-7 col-md-6 mb-2">
                       <div class="card">
                         <div class="card-header">
                           <h6 class="m-0 font-weight-bold text-dark">Severity of Vulnerabilities</h6>
                         </div>
                         <div class="card-body">
                           <div class="chart-bar">
-                            <canvas id="myBarChart"></canvas>
+                              <input hidden="true" id = "severitiesArray0" value={{severities[0]}}>
+                              <input hidden="true" id = "severitiesArray1" value={{severities[1]}}>
+                              <input hidden="true" id = "severitiesArray2" value={{severities[2]}}>
+                              <input hidden="true" id = "severitiesArray3" value={{severities[3]}}>
+                              <input hidden="true" id = "severitiesArray4" value={{severities[4]}}>
+                            &lt;!&ndash;<canvas id="myBarChart" ></canvas>&ndash;&gt;
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>-->
                 </div>
                  <div style = "display:block; clear:both; page-break-after:always;"></div>
                  <div class="row">
@@ -311,7 +319,7 @@
                           <h6 class="m-0 font-weight-bold text-dark">Scope</h6>
                         </div>
                         <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                            <pre>{{project.scope}}</pre>
                         </div>
                       </div>
                     </div>
@@ -323,7 +331,7 @@
                           <h6 class="m-0 font-weight-bold text-dark">Target</h6>
                         </div>
                         <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                            <pre>{{project.target}}</pre>
                         </div>
                       </div>
                     </div>
@@ -335,7 +343,7 @@
                           <h6 class="m-0 font-weight-bold text-dark">Description</h6>
                         </div>
                         <div class="card-body">
-                          The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+                            <pre>{{project.description}}</pre>
                         </div>
                       </div>
                     </div>
@@ -349,13 +357,127 @@
 
 
       </div>
+ <div style = "display:block; clear:both; page-break-after:always;"></div>
+ {% for vulnerability in vulnerabilities1 %}
+  <div id="wrapper">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4" id="{{vulnerability._id}}">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-dark">Vulnerability #{{loop.index}} - {{vulnerability.name}}</h6>
+            </div>
+            <div class="card-body">
+                <!-- Small items -->
+                <!-- Basic Card Example -->
+                <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">Summary</h6>
+                        </div>
+                        <ul class="list-group">
+                      <li class="list-group-item"><span class="m-0 font-weight text-dark" style="padding-right: 20px">Name</span>{{vulnerability.name}}</li>
+                        <li class="list-group-item severity"><span class="m-0 font-weight text-dark" style="padding-right: 20px">Severity</span>{{vulnerability.severity}}</li>
+                        <li class="list-group-item"><span class="m-0 font-weight text-dark" style="padding-right: 20px">Status</span>{{vulnerability.status}}</li>
+                            <li class="list-group-item"><span class="m-0 font-weight text-dark" style="padding-right: 20px">Exploitability</span>{{vulnerability.exploitability}}</li>
+                        <li class="list-group-item"><span class="m-0 font-weight text-dark" style="padding-right: 20px">OWASP Top 10 Mapping</span>{{vulnerability.owaspTop10}}</li>
+                    </ul>
+                      </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">Risk/Impact</h6>
+                        </div>
+                        <div class="card-body">
+                          {{vulnerability.risk}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">Description</h6>
+                        </div>
+                        <div class="card-body">
+                            {{vulnerability.description}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">POC</h6>
+                        </div>
+                        <div class="card-body">
+                          {{vulnerability.poc}}
+                        </div>
+                          <div class="text-center my-auto" style="padding:10px"> <img max-width="700px" src="/files/{{vulnerability.pocImage}}" onerror="this.style.display='none'"></div>
+                      </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">Remidiation</h6>
+                        </div>
+                        <div class="card-body">
+                          {{vulnerability.remediation}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">Comments</h6>
+                        </div>
+                        <div class="card-body">
+                          {{vulnerability.comments}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-xl-7 col-md-6 mb-2">
+                      <div class="card ">
+                        <div class="card-header">
+                          <h6 class="m-0 font-weight-bold text-dark">References</h6>
+                        </div>
+                        <div class="card-body">
+                          {{vulnerability.references}}
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+      </div>
+ <div style = "display:block; clear:both; page-break-after:always;"></div>
+ {% endfor %}
+
       <!-- End of Main Content -->
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Riva Security 2020</span>
+            <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
       </footer>
@@ -405,14 +527,88 @@
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
- <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+ <script src="js/demo/anychart-base.min.js" type="text/javascript"></script>
+    <script>
+      anychart.onDocumentReady(function () {
+        // create pie chart with passed data
+          var ydata1 = [];
+            ydata1.push(parseInt(document.getElementById("severitiesArray0").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray1").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray2").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray3").value));
+            ydata1.push(parseInt(document.getElementById("severitiesArray4").value));
+          vs=ydata1;
+        var data = anychart.data.set([
+          ["critical", vs[0], "purple", "purple", "", {stroke: null}],
+          ["high", vs[1], "red", "red", "", {stroke: null}],
+          ["medium", vs[2], "orange", "orange", "", {stroke: null}],
+          ["low", vs[3], "blue", "blue", "", {stroke: null}],
+          ["info", vs[4], "green", "green", "", {stroke: null}],
+        ]);
+        var wealth =  data.mapAs({x: 0, value: 1, fill: 3, stroke: 0, label: 6});
+        var chart = anychart.bar(wealth);
+        // set chart title text settings
+        //chart.title('Severities of Vulnerabilities');
+         //chart.yScale().ticks().interval(1);
+        chart.yScale().ticks().allowFractional(false);
+            //chart.yScale().maximum(Math.max(...vs));
+        // set container id for the chart
+        chart.container('container');
+        // initiate chart drawing
+        chart.draw();
+      });
+    </script>
+
+  <script>
+    function severity_color(severity) {
+        var severityColors=["purple","red","orange","blue","green"];
+        var labels= ["critical", "high", "medium", "low", "info"];
+        //console.log(severity)
+        if(severity.includes("high"))
+            return "red"
+        if(severity.includes("critical"))
+            return "purple"
+        if(severity.includes("medium"))
+            return "orange"
+        if(severity.includes("low"))
+            return "blue"
+        if(severity.includes("info"))
+            return "green"
+
+        color = 0
+        return color;
+    }
 
 
+    function change_colors() {
+        elements = document.getElementsByClassName("severity")
+        for (var i = 0; i < elements.length; i++) {
+            //console.log(elements[i].innerHTML)
+            elements[i].style.color = severity_color(elements[i].innerHTML)
+            if(elements[i].previousElementSibling != null){
+                console.log(elements[i].previousElementSibling.textContent)
+                elements[i].previousElementSibling.style.color = severity_color(elements[i].innerHTML)
+
+            }
+        }
+    }
+
+
+    change_colors()
+
+
+
+
+
+</script>
 
 </body>
 

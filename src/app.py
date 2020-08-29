@@ -197,21 +197,25 @@ def add_vulnerability():
     risk = request.form['risk']
     date = request.form['date']
     remediation = request.form['remediation']
-    if request.files['pocImage'] != None:
-        image = request.files['pocImage']
-        print(image.filename)
-        # add picture to DB and get ID
-        image_id = Vulnerability.addImage(image, image.filename)
-        print(image_id)
-        pocImage = image.filename
+    if 'pocImageIDText' in request.form:
+        pocImage = request.form['pocImageIDText']
+        print(pocImage)
 
     else:
         pocImage = None
+
+    if 'pocImage' in request.files:
+        image = request.files['pocImage']
+        if image.filename != '':
+            # add picture to DB and get ID
+            image_id = Project.addImage(image, image.filename)
+            pocImage = image.filename
+
+
     vuln_id = request.args.get('vuln')
-    print(vuln_id)
     if vuln_id !=None: #if vuln  already exist, dont add it, just edit it
             if Vulnerability.getVulnerability(vuln_id) != False:
-                print("edit")
+
                 vulnerability = Vulnerability(_id=vuln_id, report_id=report_id, name=name, status=status, severity=severity,
                                               exploitability=exploitability, poc=poc, description=description,
                                               comments=comments,
@@ -219,7 +223,7 @@ def add_vulnerability():
                                               risk=risk, remediation=remediation, pocImage=pocImage, date=date)
                 Vulnerability.editVulnerability(vuln_id, vulnerability)
             else: #if vuln does not exist, add it
-                print("add")
+
                 vulnerability = Vulnerability(report_id=report_id, name=name, status=status, severity=severity,
                                               exploitability=exploitability, poc=poc, description=description,
                                               comments=comments,
@@ -257,7 +261,8 @@ def download_report():
                 'margin-right': '0in',
                 'margin-bottom': '0.2in',
                 'margin-left': '0in',
-                'footer-center': '[page] of [topage]'
+                'footer-center': '[page] of [topage]',
+
 
             }
             url = str(request.url_root)+"/report?project_id="+str(project_id)
@@ -276,7 +281,12 @@ def download_report():
 #get IMage data
 @app.route('/files/<filename>')
 def getImage(filename):
-    return Project.getImage(filename=filename)
+    if filename == "None":
+        print("none")
+        return ""
+    else:
+        print("found")
+        return Project.getImage(filename=filename)
 
 #get IMage data
 @app.route('/files/')
