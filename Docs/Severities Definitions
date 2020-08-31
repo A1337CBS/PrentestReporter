@@ -1,0 +1,13 @@
+ndividual Vulnerability Rating – It should be noted that the overall business risk caused by any of the issues found is outside our scope. This means that some risk reported as high from a technical perspective may be considered as medium, low or acceptable, as a result of other compensating controls unknown to us. Individual vulnerability should calculate on the basis of three properties.
+Impact on the business
+How the business will be affected if that particular vulnerability is exploited.
+Ease of exploitation
+Skill level required to exploit the vulnerability like skilled, moderate or script kiddies.
+Exposure
+What is the exposure of application for example it is available for public user, registered user or only internal users. Risk Level Description
+High
+High Risk vulnerability can be exploited by an intruder to get full administrative access to the application or its primary operating system.
+Medium
+Medium Risk vulnerability discloses information about the application and its underlying communications that can be used by an attacker in conjunction with another vulnerability to gain administrative power on the application or its primary operating system.
+Low
+Low Risk vulnerability can result in inventory of vital information held by or about the application or its primary operating system.
